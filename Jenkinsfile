@@ -45,15 +45,27 @@ pipeline {
             }
         }
 
-        stage('SonarQube Scan') {
+       stage('SonarQube Scan') {
             steps {
                 withSonarQubeEnv("${SONARQUBE}") {
                     dir('myapp') {
-                        bat "sonar-scanner -Dsonar.projectKey=myapp -Dsonar.sources=. -Dsonar.python.coverage.reportPaths=coverage.xml"
+                        script {
+                            def scannerHome = tool 'sonar-scanner'
+                    
+                            bat """
+                                "${scannerHome}/bin/sonar-scanner.bat" ^
+                                  -Dsonar.projectKey=myapp ^
+                                  -Dsonar.sources=. ^
+                                  -Dsonar.host.url=http://localhost:9000 ^
+                                  -Dsonar.ws.timeout=600 ^
+                                  -Dsonar.python.coverage.reportPaths=coverage.xml
+                            """
+                        }
                     }
                 }
             }
         }
+
 
         stage('Apply Kubernetes') {
             steps {
