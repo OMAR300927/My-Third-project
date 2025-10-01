@@ -18,7 +18,7 @@ pipeline {
         stage('Test') {
             steps {
                 dir('myapp') {
-                    bat 'python -m pip install --upgrade pip'
+                    bat 'C:/Users/omsa3/AppData/Local/Programs/Python/Python313/python.exe -m pip install --upgrade pip'
                     bat 'pip install -r requirements.txt'
                     bat 'pytest --maxfail=1 --disable-warnings -q --cov=. --cov-report=xml:coverage.xml'
                 }
