@@ -1,7 +1,7 @@
 # ======================
 # Stage 1: Build & Test
 # ======================
-FROM python:3.10-slim as builder
+FROM python:3.10-slim AS builder
 
 WORKDIR /app
 
