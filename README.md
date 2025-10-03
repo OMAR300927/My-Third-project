@@ -52,6 +52,8 @@ Build and deploy a flask page using Jenkins, Kubernetes, SonarQube and Prometheu
 
 # Notes
 
+* To make this flask app show the metrics i add prometheus_flask_exporter library and `metrics = PrometheusMetrics(app)` 
 * This flask page won't show anything, it's just to test if the secret file work or not by write in terminal this command :
 `curl -c cookies.txt -b cookies.txt -X POST http://<NodeIP>:<NodePort>/login -H "Content-Type: application/json" -d '{"username":"admin","password":"admin123"}' && curl -b cookies.txt http://<NodeIP>:<NodePort>/`
-* In this project i used the kube-prometheus-stack so the configutarion will be written by Kubernetes CRDs not manually, that's why i used servicemonitor file to monitor the flask app inside the cluster
+* In this project i used the kube-prometheus-stack ( Full Stack ) so the configutarion will be written by Kubernetes CRDs not manually, that's why i used servicemonitor file to monitor the flask app inside the cluster
+* If i want to modify Prometheus.yml manually i need to install Prometheus ( not full stack )
