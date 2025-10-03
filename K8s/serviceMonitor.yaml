@@ -3,12 +3,12 @@ kind: ServiceMonitor
 metadata:
   name: flask-servicemonitor
   labels:
-    release: prometheus
+    release: kube-prometheus
 spec:
   selector:
     matchLabels:
       app: flask-app
   endpoints:
     - port: http
-      path: /
+      path: /metrics
       interval: 30s
